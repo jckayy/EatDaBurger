@@ -1,0 +1,60 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12" style = "text-align: center">
+      <h1>Eat da burger!</h1>
+      <img src="https://banner2.kisspng.com/20180203/wfq/kisspng-hamburger-cheeseburger-veggie-burger-cartoon-clip-burgers-cliparts-5a765957172ac5.5106154015177055590949.jpg" style="width:200px;height:120px;">
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-sm-12" style = "size: 10cm">
+<p></p>
+  </div>
+
+  <div class="col-sm-12" style = "text-align: center">
+    {{!-- <h2>Add a burger</h2> --}}
+    <form id="createburger" class="create-form">
+
+    <div class="form-group">
+    <textarea type="text" id="ca" name="burger" rows="3"> </textarea>
+    {{!-- <input type="text" id="ca" name="burger"> --}}
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <p>Enter a burger you want to eat and click the "submit" button!</p>
+  </form>
+  </div>
+
+
+
+
+
+<script type="text/javascript">
+
+ $("#createburger").on("submit", function(event) {
+    event.preventDefault();
+
+    var newBurger = {
+      burger: $("#createburger [name=burger]").val().trim()
+    };
+    console.log(newBurger);
+    $.ajax("/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function() {
+        console.log("created new burger");
+        location.reload();
+      });
+  });
+
+
+
+</script>
